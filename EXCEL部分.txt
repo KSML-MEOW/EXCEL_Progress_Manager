@@ -1,0 +1,55 @@
+Sub TEST()
+
+On Error goto ErrHandle
+
+
+ '程式結束時
+ErrHandle:
+If strResponse = "" Then
+
+If Err <> 0 Then
+strResponse = Err.Number & vbCrLf & Err.Description
+Else
+strResponse = "True"
+End If
+
+
+End If
+Call ResRecord(strResponse)
+End Sub
+
+
+
+
+
+Sub ResRecord(ByVal Res)
+filenamePath = ThisWorkbook.Path
+
+
+
+Data_Name = "KReSultforVB6"
+
+Filename = filenamePath & "\" & Data_Name & ".txt"
+                         
+                          
+                          
+                          fileNum = FreeFile
+        
+'        Kill Filename  '
+        
+                           Open Filename For Output As #fileNum ' 指定要存檔的路徑與名稱
+            Print #fileNum, Res
+        Close #fileNum
+
+End Sub
+
+
+
+MAPP部分:
+
+
+要報錯的地方
+
+strResponse = "圖片上傳失敗" '要報出的錯誤訊息
+X = 1 / 0	'故意讓程式出錯
+Exit Sub

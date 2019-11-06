@@ -1,0 +1,16 @@
+excel內巨集：
+Public Sub Test()
+MsgBox "這是excel內的巨集"
+End Sub
+
+VB6內：
+Private Sub Form_Load()
+Dim excel As Object
+Set excel = CreateObject("excel.Application")
+With excel
+    .WorkBooks.Open "C:\Book1.xls"
+    .Visible = True
+    .Run ("Test")
+End With
+Set excel = Nothing
+End Sub 
